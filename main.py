@@ -147,27 +147,30 @@ def write_file(fp_normal: str, lists: list, fp_cm2:str = 'None'):
       if v == 'a':
         with open(f'{fp_cm2}/a', 'wt') as a_f:
           a_string = ''
-          for v1 in lines[1][1]:
+          for v1 in lines[1][0]:
             a_string = f'{a_string}{massive_memory.integer_to_massive_memory(int(v1, base=16))}'
+          a_string = a_string.ljust(12288, "A")
           a_f.write(f"AAA{a_string}")
 
       if v == 'b':
         with open(f'{fp_cm2}/b', 'wt') as b_f:
           b_string = ''
-          for v1 in lines[1][2]:
+          for v1 in lines[1][1]:
             b_string = f'{b_string}{massive_memory.integer_to_massive_memory(int(v1, base=16))}'
+          b_string = b_string.ljust(12288, "A")
           b_f.write(f"AAA{b_string}")
 
       if v == 'c':
         with open(f'{fp_cm2}/c', 'wt') as c_f:
           c_string = ''
-          for v1 in lines[1][3]:
+          for v1 in lines[1][2]:
             c_string = f'{c_string}{massive_memory.integer_to_massive_memory(int(v1, base=16))}'
+          c_string = c_string.ljust(12288, "A")
           c_f.write(f"AAA{c_string}")
 
       if v == 'code':
         with open(f'{fp_cm2}/code', 'wt') as code_f:
-          code_f.write(f'00{''.join(lines[1][0]).ljust(8192, '0')}')
+          code_f.write(f'00{''.join(lines[1][3]).ljust(8192, '0')}')
 
   return lines
 
